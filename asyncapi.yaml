@@ -17,6 +17,11 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/registered_component'
+  valawai/c0/text_renderer/data/text:
+    description: Notify the text to render.
+    subscribe:
+      message:
+        $ref: '#/components/messages/text'
 
 components:
   messages:
@@ -24,6 +29,10 @@ components:
       contentType: application/json
       payload:
         $ref: '#/components/schemas/component_payload'
+    text:
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/text_payload'
 
 
   schemas:
@@ -249,3 +258,25 @@ components:
               type: array
               items:
                 - $ref: '#/components/schemas/payload_schema'
+    text_payload:
+      description: A payload with the text to render.
+      required:
+        - mime_type
+        - content
+      properties:
+        mime_type:
+          description: The mime type of the message.
+          type: string
+          enum:
+            - 'text/plain'
+            - 'text/html'
+            - 'text/markdown'
+          default: 'text/plain'
+        title:
+          description: The title of the text.
+          type: string
+        content:
+          description: The text to be renderer.
+          type: string
+      
+
