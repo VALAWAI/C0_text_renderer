@@ -8,7 +8,6 @@
 
 package eu.valawai.c0_text_renderer.messages.mov;
 
-import eu.valawai.c0_text_renderer.ValueGenerator;
 import eu.valawai.c0_text_renderer.messages.PayloadTestCase;
 
 /**
@@ -35,7 +34,7 @@ public class UnregisterComponentPayloadTest extends PayloadTestCase<UnregisterCo
 	@Override
 	public void fillIn(UnregisterComponentPayload payload) {
 
-		payload.component_id = ValueGenerator.nextPattern("component_{0}");
+		payload.component_id = faker.numerify("component_###");
 	}
 
 }

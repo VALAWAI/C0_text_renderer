@@ -2,14 +2,85 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-001" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="welcomeHeader" datatype="html">
-        <source>Welcome to our app <x id="INTERPOLATION" equiv-text="{{ title }}"/></source>
+      <trans-unit id="main_messages-menu-item-label" datatype="html">
+        <source>Messages</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.html</context>
-          <context context-type="linenumber">213,214</context>
+          <context context-type="sourcefile">src/app/main/main.html</context>
+          <context context-type="linenumber">10,13</context>
         </context-group>
-        <note priority="1" from="description">Greeting</note>
-        <note priority="1" from="meaning">Site header</note>
+        <note priority="1" from="description">The label for the option to go to the messages menu</note>
+      </trans-unit>
+      <trans-unit id="main_status-menu-item-label" datatype="html">
+        <source>Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/main.html</context>
+          <context context-type="linenumber">14,16</context>
+        </context-group>
+        <note priority="1" from="description">The label for the option to seee the component status</note>
+      </trans-unit>
+      <trans-unit id="main_copyright-text" datatype="html">
+        <source> Copyright © 2022-2026 <x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;h-4&quot; src=&quot;images/valawai-logo.png&quot; alt=&quot;VALAWAI logo&quot;&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/main.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <note priority="1" from="description">The copyright text</note>
+      </trans-unit>
+      <trans-unit id="main_status_version-label" datatype="html">
+        <source> Version:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/status/status.html</context>
+          <context context-type="linenumber">5,8</context>
+        </context-group>
+        <note priority="1" from="description">The label of the status with the MOV version</note>
+      </trans-unit>
+      <trans-unit id="main_status_profile-label" datatype="html">
+        <source> Profile:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/status/status.html</context>
+          <context context-type="linenumber">10,13</context>
+        </context-group>
+        <note priority="1" from="description">The label of the status with the MOV profile</note>
+      </trans-unit>
+      <trans-unit id="main_status_health-label" datatype="html">
+        <source> Health:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/status/status.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+        <note priority="1" from="description">The label of the status with the MOV health</note>
+      </trans-unit>
+      <trans-unit id="main_status_code_page-title" datatype="html">
+        <source>Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/status/status.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <note priority="1" from="description">The header title for the status</note>
+      </trans-unit>
+      <trans-unit id="shared_not-found_title" datatype="html">
+        <source>Page not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/not-found/not-found.component.html</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+        <note priority="1" from="description">Not found title</note>
+      </trans-unit>
+      <trans-unit id="shared_not-found_message" datatype="html">
+        <source>The page you are looking for might have been removed, or its name changed, or it temporarily unavailable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/not-found/not-found.component.html</context>
+          <context context-type="linenumber">9,13</context>
+        </context-group>
+        <note priority="1" from="description">Not found message</note>
+      </trans-unit>
+      <trans-unit id="shared_not-found_go-home" datatype="html">
+        <source>Go to home page </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/not-found/not-found.component.html</context>
+          <context context-type="linenumber">15,19</context>
+        </context-group>
+        <note priority="1" from="description">Not found go home page</note>
       </trans-unit>
     </body>
   </file>

@@ -8,16 +8,22 @@
 
 package eu.valawai.c0_text_renderer.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import eu.valawai.c0_text_renderer.messages.TextPayload;
 import io.quarkus.test.junit.QuarkusTest;
+import io.smallrye.mutiny.helpers.test.UniAssertSubscriber;
+import jakarta.inject.Inject;
 import net.datafaker.Faker;
 
 /**
@@ -44,7 +50,11 @@ public class ReceivedTextStoreServiceTest {
    */
   @BeforeEach
   public void setUp() {
-    this.service.purge().await().indefinitely();
+
+    this.service.purge()
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted();
   }
 
   // -------------------------------------------------------------------------
@@ -55,17 +65,24 @@ public class ReceivedTextStoreServiceTest {
    * Check that purge removes all stored texts.
    */
   @Test
-
   public void shouldPurgeClearAllTexts() {
 
     insertRandomPayload();
     insertRandomPayload();
 
-    this.service.purge().await().indefinitely();
+    this.service.purge()
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted();
 
-    final var page = this.service.getReceivedTextPage(0, 100).await().indefinitely();
-    assertEquals(0, page.total);
-    assertNull(page.receivedTexts);
+    final var page = this.service.getReceivedTextPage(0, 100)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
+
+    assertThat(page.total, is(0L));
+    assertThat(page.receivedTexts, nullValue());
   }
 
   // -------------------------------------------------------------------------
@@ -73,20 +90,24 @@ public class ReceivedTextStoreServiceTest {
   // -------------------------------------------------------------------------
 
   /**
-   * Check that inserting a payload with all fields returns a populated
-   * ReceivedText.
+   * Check that inserting a payload with all fields returns a populated ReceivedText.
    */
   @Test
   public void shouldInsertWithAllFields() {
 
     final var payload = nextPayload();
-    final var result = this.service.insert(payload).await().indefinitely();
 
-    assertNotNull(result);
-    assertTrue(result.id > 0);
-    assertEquals(payload.mime_type, result.mimeType);
-    assertEquals(payload.title, result.title);
-    assertEquals(payload.content, result.content);
+    final var result = this.service.insert(payload)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
+
+    assertThat(result, notNullValue());
+    assertThat(result.id, greaterThan(0L));
+    assertThat(result.mimeType, is(payload.mime_type));
+    assertThat(result.title, is(payload.title));
+    assertThat(result.content, is(payload.content));
   }
 
   /**
@@ -98,12 +119,15 @@ public class ReceivedTextStoreServiceTest {
     final var payload = nextPayload();
     payload.title = null;
 
-    final var result = this.service.insert(payload).await().indefinitely();
+    final var result = this.service.insert(payload)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(result);
-    assertNotNull(result.title);
-    assertTrue(result.title.contains(String.valueOf(result.id)),
-        "Generated title should contain the id but was: " + result.title);
+    assertThat(result, notNullValue());
+    assertThat(result.title, notNullValue());
+    assertThat(result.title, containsString(String.valueOf(result.id)));
   }
 
   /**
@@ -115,12 +139,15 @@ public class ReceivedTextStoreServiceTest {
     final var payload = nextPayload();
     payload.title = "";
 
-    final var result = this.service.insert(payload).await().indefinitely();
+    final var result = this.service.insert(payload)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(result);
-    assertNotNull(result.title);
-    assertTrue(result.title.contains(String.valueOf(result.id)),
-        "Generated title should contain the id but was: " + result.title);
+    assertThat(result, notNullValue());
+    assertThat(result.title, notNullValue());
+    assertThat(result.title, containsString(String.valueOf(result.id)));
   }
 
   /**
@@ -129,12 +156,21 @@ public class ReceivedTextStoreServiceTest {
   @Test
   public void shouldInsertAssignIncrementalIds() {
 
-    final var first = this.service.insert(nextPayload()).await().indefinitely();
-    final var second = this.service.insert(nextPayload()).await().indefinitely();
+    final var first = this.service.insert(nextPayload())
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(first);
-    assertNotNull(second);
-    assertTrue(second.id > first.id);
+    final var second = this.service.insert(nextPayload())
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
+
+    assertThat(first, notNullValue());
+    assertThat(second, notNullValue());
+    assertThat(second.id, greaterThan(first.id));
   }
 
   // -------------------------------------------------------------------------
@@ -148,28 +184,32 @@ public class ReceivedTextStoreServiceTest {
   public void shouldGetExistingText() {
 
     final var inserted = insertRandomPayload();
-    final var fetched = this.service.get(inserted.id).await().indefinitely();
 
-    assertNotNull(fetched);
-    assertEquals(inserted.id, fetched.id);
-    assertEquals(inserted.mimeType, fetched.mimeType);
-    assertEquals(inserted.title, fetched.title);
-    assertEquals(inserted.content, fetched.content);
+    final var fetched = this.service.get(inserted.id)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
+
+    assertThat(fetched, notNullValue());
+    assertThat(fetched.id, is(inserted.id));
+    assertThat(fetched.mimeType, is(inserted.mimeType));
+    assertThat(fetched.title, is(inserted.title));
+    assertThat(fetched.content, is(inserted.content));
   }
 
   /**
-   * Check that getting a non-existing id fails.
+   * Check that getting a non-existing id fails with an IllegalArgumentException.
    */
   @Test
   public void shouldGetFailForUnknownId() {
 
-    final var uni = this.service.get(Long.MAX_VALUE);
-    try {
-      uni.await().indefinitely();
-      assertTrue(false, "Expected a failure for an unknown id");
-    } catch (final Exception expected) {
-      // expected
-    }
+    final var failure = this.service.get(Long.MAX_VALUE)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitFailure()
+        .getFailure();
+
+    assertThat(failure, instanceOf(IllegalArgumentException.class));
   }
 
   // -------------------------------------------------------------------------
@@ -182,11 +222,21 @@ public class ReceivedTextStoreServiceTest {
   @Test
   public void shouldGetLastReceivedTextIdIncreasesAfterInsert() {
 
-    final var idBefore = this.service.getLastReceivedTextId().await().indefinitely();
-    insertRandomPayload();
-    final var idAfter = this.service.getLastReceivedTextId().await().indefinitely();
+    final var idBefore = this.service.getLastReceivedTextId()
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertTrue(idAfter > idBefore);
+    insertRandomPayload();
+
+    final var idAfter = this.service.getLastReceivedTextId()
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
+
+    assertThat(idAfter, greaterThan(idBefore));
   }
 
   // -------------------------------------------------------------------------
@@ -199,11 +249,15 @@ public class ReceivedTextStoreServiceTest {
   @Test
   public void shouldGetEmptyPageWhenNoTexts() {
 
-    final var page = this.service.getReceivedTextPage(0, 10).await().indefinitely();
+    final var page = this.service.getReceivedTextPage(0, 10)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(page);
-    assertEquals(0, page.total);
-    assertNull(page.receivedTexts);
+    assertThat(page, notNullValue());
+    assertThat(page.total, is(0L));
+    assertThat(page.receivedTexts, nullValue());
   }
 
   /**
@@ -217,12 +271,16 @@ public class ReceivedTextStoreServiceTest {
       insertRandomPayload();
     }
 
-    final var page = this.service.getReceivedTextPage(0, 100).await().indefinitely();
+    final var page = this.service.getReceivedTextPage(0, 100)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(page);
-    assertEquals(count, page.total);
-    assertNotNull(page.receivedTexts);
-    assertEquals(count, page.receivedTexts.size());
+    assertThat(page, notNullValue());
+    assertThat(page.total, is((long) count));
+    assertThat(page.receivedTexts, notNullValue());
+    assertThat(page.receivedTexts, hasSize(count));
   }
 
   /**
@@ -237,12 +295,16 @@ public class ReceivedTextStoreServiceTest {
     }
 
     final int limit = 2;
-    final var page = this.service.getReceivedTextPage(0, limit).await().indefinitely();
+    final var page = this.service.getReceivedTextPage(0, limit)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(page);
-    assertEquals(count, page.total);
-    assertNotNull(page.receivedTexts);
-    assertEquals(limit, page.receivedTexts.size());
+    assertThat(page, notNullValue());
+    assertThat(page.total, is((long) count));
+    assertThat(page.receivedTexts, notNullValue());
+    assertThat(page.receivedTexts, hasSize(limit));
   }
 
   /**
@@ -257,12 +319,16 @@ public class ReceivedTextStoreServiceTest {
     }
 
     final int offset = 3;
-    final var page = this.service.getReceivedTextPage(offset, 100).await().indefinitely();
+    final var page = this.service.getReceivedTextPage(offset, 100)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(page);
-    assertEquals(count, page.total);
-    assertNotNull(page.receivedTexts);
-    assertEquals(count - offset, page.receivedTexts.size());
+    assertThat(page, notNullValue());
+    assertThat(page.total, is((long) count));
+    assertThat(page.receivedTexts, notNullValue());
+    assertThat(page.receivedTexts, hasSize(count - offset));
   }
 
   /**
@@ -273,11 +339,15 @@ public class ReceivedTextStoreServiceTest {
 
     insertRandomPayload();
 
-    final var page = this.service.getReceivedTextPage(100, 10).await().indefinitely();
+    final var page = this.service.getReceivedTextPage(100, 10)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(page);
-    assertEquals(1, page.total);
-    assertNull(page.receivedTexts);
+    assertThat(page, notNullValue());
+    assertThat(page.total, is(1L));
+    assertThat(page.receivedTexts, nullValue());
   }
 
   /**
@@ -291,12 +361,17 @@ public class ReceivedTextStoreServiceTest {
       insertRandomPayload();
     }
 
-    final var page = this.service.getReceivedTextPage(0, 100).await().indefinitely();
+    final var page = this.service.getReceivedTextPage(0, 100)
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
 
-    assertNotNull(page.receivedTexts);
-    for (int i = 1; i < page.receivedTexts.size(); i++) {
-      assertTrue(page.receivedTexts.get(i).id > page.receivedTexts.get(i - 1).id,
-          "Texts should be ordered by id ascending");
+    assertThat(page.receivedTexts, notNullValue());
+    final var items = page.receivedTexts;
+    for (int i = 1; i < items.size(); i++) {
+      assertThat("Texts should be ordered by id ascending",
+          items.get(i).id, greaterThan(items.get(i - 1).id));
     }
   }
 
@@ -308,6 +383,7 @@ public class ReceivedTextStoreServiceTest {
    * Build a random valid {@link TextPayload}.
    */
   private TextPayload nextPayload() {
+
     final var payload = new TextPayload();
     payload.mime_type = "text/plain";
     payload.title = faker.lorem().word();
@@ -319,7 +395,12 @@ public class ReceivedTextStoreServiceTest {
    * Insert a random payload and return the resulting {@link ReceivedText}.
    */
   private ReceivedText insertRandomPayload() {
-    return this.service.insert(nextPayload()).await().indefinitely();
+
+    return this.service.insert(nextPayload())
+        .subscribe().withSubscriber(UniAssertSubscriber.create())
+        .awaitItem()
+        .assertCompleted()
+        .getItem();
   }
 
 }

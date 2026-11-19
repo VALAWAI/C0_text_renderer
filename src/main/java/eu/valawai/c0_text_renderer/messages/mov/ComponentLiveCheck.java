@@ -25,7 +25,7 @@ public class ComponentLiveCheck implements HealthCheck {
 	/**
 	 * The name of the check.
 	 */
-	public static final String NAME = "Registered C0 patient treatment UI";
+	public static final String NAME = "Registered C0 text renderer";
 
 	/**
 	 * The status of the component.

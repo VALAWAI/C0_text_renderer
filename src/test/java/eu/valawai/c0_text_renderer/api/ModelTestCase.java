@@ -16,6 +16,6 @@ import eu.valawai.c0_text_renderer.models.ReflectionModelTestCase;
  * 
  * @param <T> type of model to test
  */
-public abstract class ModelTestCase<T> extends ReflectionModelTestCase<T> {
+public abstract class ModelTestCase<T extends Model> extends ReflectionModelTestCase<T> {
 
 }

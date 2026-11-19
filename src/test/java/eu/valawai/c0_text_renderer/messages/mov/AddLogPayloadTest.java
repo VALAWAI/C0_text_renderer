@@ -36,7 +36,7 @@ public class AddLogPayloadTest extends PayloadTestCase<AddLogPayload> {
 	public void fillIn(AddLogPayload payload) {
 
 		final var values = LogLevel.values();
-		payload.level = values[faker.number().randomInt(0, values.length - 1)];
+		payload.level = values[faker.number().numberBetween(0, values.length - 1)];
 		payload.message = "Log message " + faker.number().randomDouble(2, 0, 100);
 		payload.payload = Json.encodePrettily(new QueryComponentsPayload());
 	}
