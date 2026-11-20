@@ -7,11 +7,13 @@
 */
 
 import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
-import { Info } from './info.model';
-import { HealthInfo } from './health-info.model';
-import { environment } from '@env';
 import { Injectable } from '@angular/core';
+import { environment } from '@env';
 import { Observable, catchError, of, throwError } from 'rxjs';
+import { HealthInfo } from './health-info.model';
+import { Info } from './info.model';
+import { ReceivedTextPage } from "./received-text-page.model";
+import { ReceivedText } from "./received-text.model";
 
 /**
  * The service used to interact with the 
@@ -113,6 +115,33 @@ export class ApiService {
 				return throwError(() => err);
 			})
 		);
+	}
+
+	/**
+	 * Get a page with some received texts.
+	 */
+	public getReceivedTextPage(offset: number = 0, limit: number = 10): Observable<ReceivedTextPage> {
+
+		var url = this.url('/v1/texts');
+		return this.http.get<ReceivedTextPage>(url, this.optionsWithParams({ offset: offset, limit: limit }));
+	}
+
+	/**
+	 * Get a received text.
+	 */
+	public getReceivedText(id: number): Observable<ReceivedText> {
+
+		var url = this.url('/v1/texts/' + id);
+		return this.http.get<ReceivedText>(url);
+	}
+
+	/**
+	 * Delete a received text.
+	 */
+	public deleteReceivedText(id: number): Observable<void> {
+
+		var url = this.url('/v1/texts/' + id);
+		return this.http.delete<void>(url);
 	}
 
 }

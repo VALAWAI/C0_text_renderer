@@ -13,7 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import eu.valawai.c0_text_renderer.models.ReflectionModel;
 
 /**
- * Contain sthe information of a text that is received to render.
+ * Contain the information of a text that is received to render.
  * 
  * @author VALAWAI
  */

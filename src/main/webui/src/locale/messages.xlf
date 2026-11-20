@@ -58,6 +58,150 @@
         </context-group>
         <note priority="1" from="description">The header title for the status</note>
       </trans-unit>
+      <trans-unit id="main_texts_delete_msg-title" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon class=&quot;text-yellow-700 dark:text-yellow-400&quot;&gt;"/>warning<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="START_TAG_SPAN_1" ctype="x-span_1" equiv-text="&lt;span&gt;"/>Delete text <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-bold&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ t.title || (&apos;#&apos; + t.id) }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.html</context>
+          <context context-type="linenumber">10,14</context>
+        </context-group>
+        <note priority="1" from="description">The title to confirm the delete text</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_msg-content" datatype="html">
+        <source> Deleting a received text cannot be undone, so don&apos;t do it unless you&apos;re sure. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.html</context>
+          <context context-type="linenumber">16,20</context>
+        </context-group>
+        <note priority="1" from="description">The message to confirm delete text</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_ok-label" datatype="html">
+        <source> Delete </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+        <note priority="1" from="description">Accept to delete text</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_cancel-label" datatype="html">
+        <source> Cancel </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.html</context>
+          <context context-type="linenumber">37,40</context>
+        </context-group>
+        <note priority="1" from="description">Cancel delete text</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_back-to-list" datatype="html">
+        <source> Back to texts </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.html</context>
+          <context context-type="linenumber">51,55</context>
+        </context-group>
+        <note priority="1" from="description">Back to texts link</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_page-title" datatype="html">
+        <source>Delete Text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <note priority="1" from="description">The header title for deleting a text</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_load-error" datatype="html">
+        <source>Failed to load text information.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.ts</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <note priority="1" from="description">Error when loading text to delete</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_action-error" datatype="html">
+        <source>Failed to delete text.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/delete/delete.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+        <note priority="1" from="description">Error when deleting text</note>
+      </trans-unit>
+      <trans-unit id="main_texts_id-header-label" datatype="html">
+        <source>Id</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/texts.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <note priority="1" from="description">The label of the text id column header</note>
+      </trans-unit>
+      <trans-unit id="main_texts_title-header-label" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/texts.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+        <note priority="1" from="description">The label of the text title column header</note>
+      </trans-unit>
+      <trans-unit id="main_texts_received-data-header-label" datatype="html">
+        <source>Received Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/texts.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+        <note priority="1" from="description">The label of the text received date column header</note>
+      </trans-unit>
+      <trans-unit id="main_texts_actions-header-label" datatype="html">
+        <source>Actions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/texts.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+        <note priority="1" from="description">The label of the text actions column header</note>
+      </trans-unit>
+      <trans-unit id="main_texts_view-text-menu-item-label" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;primary&quot;&gt;"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> View </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/texts.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <note priority="1" from="description">Menu item to view text information</note>
+      </trans-unit>
+      <trans-unit id="main_texts_delete-text-menu-item-label" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;warn&quot;&gt;"/>delete<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Delete </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/texts.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+        <note priority="1" from="description">Menu item to delete a text</note>
+      </trans-unit>
+      <trans-unit id="main_texts_page-title" datatype="html">
+        <source>Received Texts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/texts.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+        <note priority="1" from="description">The header title for the texts</note>
+      </trans-unit>
+      <trans-unit id="main_text_view_back-to-list" datatype="html">
+        <source>Back to texts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/view/view.html</context>
+          <context context-type="linenumber">13,16</context>
+        </context-group>
+        <note priority="1" from="description">Back to texts link</note>
+      </trans-unit>
+      <trans-unit id="main_text_view_page-title" datatype="html">
+        <source>Text View</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/view/view.ts</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+        <note priority="1" from="description">The header title for the text view</note>
+      </trans-unit>
+      <trans-unit id="main_text_view_error" datatype="html">
+        <source>Failed to load text.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/texts/view/view.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <note priority="1" from="description">Error message when text cannot be loaded</note>
+      </trans-unit>
       <trans-unit id="shared_not-found_title" datatype="html">
         <source>Page not found</source>
         <context-group purpose="location">

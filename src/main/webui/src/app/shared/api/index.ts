@@ -8,5 +8,7 @@
 
 
 export { ApiService } from './api.service';
-export { HealthInfo, type HealthStatus, HealthCheck } from './health-info.model';
+export { HealthCheck, HealthInfo, type HealthStatus } from './health-info.model';
 export { Info } from './info.model';
+export { ReceivedTextPage } from './received-text-page.model';
+export { ReceivedText } from './received-text.model';

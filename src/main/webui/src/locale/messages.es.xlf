@@ -1,10 +1,118 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-DEV" target-language="es" datatype="plaintext" original="ng2.template">
+  <file source-language="en-001" target-language="es" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="welcomeHeader" datatype="html">
-        <source>Welcome to our app <x id="INTERPOLATION" equiv-text="{{ title }}"/></source>
-        <target>Bienvenido/a a nuestra aplicación <x id="INTERPOLATION" equiv-text="{{ title }}"/></target>
+      <trans-unit id="main_messages-menu-item-label" datatype="html">
+        <source>Messages</source>
+        <target>Mensajes</target>
+      </trans-unit>
+      <trans-unit id="main_status-menu-item-label" datatype="html">
+        <source>Status</source>
+        <target>Estado</target>
+      </trans-unit>
+      <trans-unit id="main_copyright-text" datatype="html">
+        <source> Copyright © 2022-2026 <x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;h-4&quot; src=&quot;images/valawai-logo.png&quot; alt=&quot;VALAWAI logo&quot;&gt;"/></source>
+        <target> Copyright © 2022-2026 <x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;h-4&quot; src=&quot;images/valawai-logo.png&quot; alt=&quot;VALAWAI logo&quot;&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="main_status_version-label" datatype="html">
+        <source> Version:</source>
+        <target> Versión:</target>
+      </trans-unit>
+      <trans-unit id="main_status_profile-label" datatype="html">
+        <source> Profile:</source>
+        <target> Perfil:</target>
+      </trans-unit>
+      <trans-unit id="main_status_health-label" datatype="html">
+        <source> Health:</source>
+        <target> Salud:</target>
+      </trans-unit>
+      <trans-unit id="main_status_code_page-title" datatype="html">
+        <source>Status</source>
+        <target>Estado</target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_msg-title" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon class=&quot;text-yellow-700 dark:text-yellow-400&quot;&gt;"/>warning<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="START_TAG_SPAN_1" ctype="x-span_1" equiv-text="&lt;span&gt;"/>Delete text <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-bold&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ t.title || (&apos;#&apos; + t.id) }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon class=&quot;text-yellow-700 dark:text-yellow-400&quot;&gt;"/>advertencia<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="START_TAG_SPAN_1" ctype="x-span_1" equiv-text="&lt;span&gt;"/>Eliminar texto <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-bold&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ t.title || (&apos;#&apos; + t.id) }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_msg-content" datatype="html">
+        <source> Deleting a received text cannot be undone, so don&apos;t do it unless you&apos;re sure. </source>
+        <target> La eliminación de un texto recibido no se puede deshacer, así que no lo haga a menos que esté seguro. </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_ok-label" datatype="html">
+        <source> Delete </source>
+        <target> Eliminar </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_cancel-label" datatype="html">
+        <source> Cancel </source>
+        <target> Cancelar </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_back-to-list" datatype="html">
+        <source> Back to texts </source>
+        <target> Volver a los textos </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_page-title" datatype="html">
+        <source>Delete Text</source>
+        <target>Eliminar Texto</target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_load-error" datatype="html">
+        <source>Failed to load text information.</source>
+        <target>Error al cargar la información del texto.</target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_action-error" datatype="html">
+        <source>Failed to delete text.</source>
+        <target>Error al eliminar el texto.</target>
+      </trans-unit>
+      <trans-unit id="main_texts_id-header-label" datatype="html">
+        <source>Id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="main_texts_title-header-label" datatype="html">
+        <source>Title</source>
+        <target>Título</target>
+      </trans-unit>
+      <trans-unit id="main_texts_received-data-header-label" datatype="html">
+        <source>Received Date</source>
+        <target>Fecha de recepción</target>
+      </trans-unit>
+      <trans-unit id="main_texts_actions-header-label" datatype="html">
+        <source>Actions</source>
+        <target>Acciones</target>
+      </trans-unit>
+      <trans-unit id="main_texts_view-text-menu-item-label" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;primary&quot;&gt;"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> View </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;primary&quot;&gt;"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Ver </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete-text-menu-item-label" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;warn&quot;&gt;"/>delete<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Delete </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;warn&quot;&gt;"/>delete<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Eliminar </target>
+      </trans-unit>
+      <trans-unit id="main_texts_page-title" datatype="html">
+        <source>Received Texts</source>
+        <target>Textos recibidos</target>
+      </trans-unit>
+      <trans-unit id="main_text_view_back-to-list" datatype="html">
+        <source>Back to texts</source>
+        <target>Volver a los textos</target>
+      </trans-unit>
+      <trans-unit id="main_text_view_page-title" datatype="html">
+        <source>Text View</source>
+        <target>Vista del texto</target>
+      </trans-unit>
+      <trans-unit id="main_text_view_error" datatype="html">
+        <source>Failed to load text.</source>
+        <target>Error al cargar el texto.</target>
+      </trans-unit>
+      <trans-unit id="shared_not-found_title" datatype="html">
+        <source>Page not found</source>
+        <target>Página no encontrada</target>
+      </trans-unit>
+      <trans-unit id="shared_not-found_message" datatype="html">
+        <source>The page you are looking for might have been removed, or its name changed, or it temporarily unavailable</source>
+        <target>Es posible que la página que busca haya sido eliminada, que su nombre haya cambiado o que no esté disponible temporalmente</target>
+      </trans-unit>
+      <trans-unit id="shared_not-found_go-home" datatype="html">
+        <source>Go to home page </source>
+        <target>Ir a la página de inicio </target>
       </trans-unit>
     </body>
   </file>

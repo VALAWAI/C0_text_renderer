@@ -21,6 +21,7 @@ import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.Min;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -82,6 +83,29 @@ public class TextsResources {
 
         return storageService.get(id).map(text -> Response.ok(text).build())
                 .onFailure().recoverWithItem(_ -> Response.status(Status.NOT_FOUND).build());
+    }
+
+    /**
+     * Delete a received message.
+     * 
+     * @param id The id of the message.
+     * @return No content if deleted, 404 if not found.
+     */
+    @DELETE
+    @Path("/{id}")
+    @Operation(summary = "Delete a received message", description = "Delete a received message by its identifier.")
+    @APIResponse(responseCode = "204", description = "If the message has been deleted.")
+    @APIResponse(responseCode = "404", description = "If no received message is found with the specified identifier.")
+    public Uni<Response> delete(
+            @PathParam("id") @Parameter(in = ParameterIn.PATH, description = "The identifier of the message to delete", example = "1", required = true) long id) {
+
+        return storageService.delete(id).map(deleted -> {
+            if (deleted) {
+                return Response.noContent().build();
+            } else {
+                return Response.status(Status.NOT_FOUND).build();
+            }
+        });
     }
 
 }

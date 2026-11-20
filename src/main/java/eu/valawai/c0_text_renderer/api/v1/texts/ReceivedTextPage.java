@@ -15,7 +15,7 @@ import eu.valawai.c0_text_renderer.api.Model;
 import eu.valawai.c0_text_renderer.services.ReceivedText;
 
 /**
- * Return a page of received text.
+ * A page with some received text.
  * 
  * @author VALAWAI
  */

@@ -14,8 +14,8 @@ export const routes: Routes = [
         loadComponent: () => import('./main').then(c => c.Main),
         children: [
             {
-                path: 'messages',
-                loadChildren: () => import('./messages/messages.routes').then(m => m.routes)
+                path: 'texts',
+                loadChildren: () => import('./texts/texts.routes').then(m => m.routes)
             },
             {
                 path: 'status',
@@ -24,7 +24,7 @@ export const routes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: 'messages'
+                redirectTo: 'texts'
             },
             {
                 path: '**',

@@ -104,6 +104,21 @@ public class ReceivedTextStoreService {
   }
 
   /**
+   * Delete a received text by its identifier.
+   * 
+   * @param id The identifier of the received text.
+   * @return {@code true} if deleted, {@code false} if not found.
+   */
+  public Uni<Boolean> delete(final long id) {
+
+    return Uni.createFrom().item(() -> {
+      synchronized (this.texts) {
+        return this.texts.removeIf(text -> text.id == id);
+      }
+    });
+  }
+
+  /**
    * Return the last received id.
    */
   public Uni<Long> getLastReceivedTextId() {
