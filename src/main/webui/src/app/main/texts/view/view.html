@@ -1,0 +1,87 @@
+<div class="max-w-4xl mx-auto flex flex-col gap-4 p-4">
+    @if (loading()) {
+    <div class="w-full">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    } @else if (error()) {
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 border border-red-200 dark:border-red-800" role="alert">
+        <div class="flex items-center gap-2">
+            <mat-icon>error_outline</mat-icon>
+            <span class="font-medium">{{ error() }}</span>
+        </div>
+        <div class="mt-3">
+            <a routerLink="/main/texts" class="text-sm underline hover:no-underline" i18n="Back to texts link@@main_text_view_back-to-list">Back to texts</a>
+        </div>
+    </div>
+    } @else if (text(); as t) {
+    <!-- Navigation and Actions Bar -->
+    <div class="flex items-center justify-between gap-3 pb-2 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <a mat-icon-button routerLink="/main/texts" aria-label="Back to texts" title="Back to texts">
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                {{ t.title || ('Text #' + t.id) }}
+            </h1>
+        </div>
+        <div>
+            <a mat-icon-button [routerLink]="['/main/texts', t.id, 'delete']" aria-label="Delete text" title="Delete text">
+                <mat-icon color="warn">delete</mat-icon>
+            </a>
+        </div>
+    </div>
+
+    <!-- Metadata Information -->
+    <div class="flex flex-wrap items-center gap-3 text-sm">
+        <span class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+            ID: {{ t.id }}
+        </span>
+
+        @if (t.mimeType === 'text/html') {
+        <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
+            {{ t.mimeType }}
+        </span>
+        } @else if (t.mimeType === 'text/markdown') {
+        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">
+            {{ t.mimeType }}
+        </span>
+        } @else {
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+            {{ t.mimeType || 'text/plain' }}
+        </span>
+        }
+
+        @if (t.receivedAt) {
+        <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+            <mat-icon class="!w-4 !h-4 text-[16px] leading-4">schedule</mat-icon>
+            {{ t.receivedAt * 1000 | date:'medium' }}
+        </span>
+        }
+    </div>
+
+    <!-- Main Content Area Rendered Depending on MIME Type -->
+    <div class="w-full mt-2">
+        @switch (t.mimeType) {
+            @case ('text/html') {
+            <div class="html-container w-full p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
+                [innerHTML]="safeHtml()">
+            </div>
+            }
+
+            @case ('text/markdown') {
+            <div class="markdown-container w-full p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                <markdown [data]="t.content"></markdown>
+            </div>
+            }
+
+            @case ('text/plain') {
+            <pre class="plain-container w-full p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 font-mono text-sm whitespace-pre-wrap break-words text-gray-900 dark:text-gray-100 shadow-sm">{{ t.content }}</pre>
+            }
+
+            @default {
+            <pre class="plain-container w-full p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 font-mono text-sm whitespace-pre-wrap break-words text-gray-900 dark:text-gray-100 shadow-sm">{{ t.content }}</pre>
+            }
+        }
+    </div>
+    }
+</div>

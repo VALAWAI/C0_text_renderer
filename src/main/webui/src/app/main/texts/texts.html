@@ -1,0 +1,60 @@
+<div class="max-w-4xl mx-auto flex flex-col gap-3">
+    @if (!updating) {
+    <div class="w-full flex flex-col gap-2">
+        <table mat-table [dataSource]="page().receivedTexts" class="mat-elevation-z8 w-full">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef i18n="The label of the text id column header@@main_texts_id-header-label">Id</th>
+                <td mat-cell *matCellDef="let text">{{text.id}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef i18n="The label of the text title column header@@main_texts_title-header-label">Title</th>
+                <td mat-cell *matCellDef="let text">{{text.title}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="receivedAt">
+                <th mat-header-cell *matHeaderCellDef i18n="The label of the text received date column header@@main_texts_received-data-header-label">Received Date</th>
+                <td mat-cell *matCellDef="let text">{{text.receivedAt ? (text.receivedAt * 1000 | date:'medium') : ''}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef i18n="The label of the text actions column header@@main_texts_actions-header-label">Actions</th>
+                <td mat-cell *matCellDef="let text">
+                    <button mat-icon-button aria-label="Text menu" [matMenuTriggerFor]="textMenu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #textMenu="matMenu">
+                        <button mat-menu-item
+                            i18n="Menu item to view text information@@main_texts_view-text-menu-item-label"
+                            [routerLink]="['/main/texts', text.id, 'view']">
+                            <mat-icon color="primary">visibility</mat-icon>
+                            View
+                        </button>
+                        <button mat-menu-item
+                            i18n="Menu item to delete a text@@main_texts_delete-text-menu-item-label"
+                            [routerLink]="['/main/texts', text.id, 'delete']">
+                            <mat-icon color="warn">delete</mat-icon>
+                            Delete
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        @if (pageIndex > 0 || (page().total || 0) > pageSize) {
+        <div>
+            <mat-paginator [length]="page().total || 0" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 25, 100]" (page)="handlePageEvent($event)"
+                aria-label="Select texts page"></mat-paginator>
+        </div>
+        }
+    </div>
+    } @else {
+    <div class="max-w-md mx-auto h-4 w-full">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    }
+</div>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-001" target-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="main_messages-menu-item-label" datatype="html">
+        <source>Messages</source>
+        <target>Messages</target>
+      </trans-unit>
+      <trans-unit id="main_status-menu-item-label" datatype="html">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="main_copyright-text" datatype="html">
+        <source> Copyright © 2022-2026 <x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;h-4&quot; src=&quot;images/valawai-logo.png&quot; alt=&quot;VALAWAI logo&quot;&gt;"/></source>
+        <target> Copyright © 2022-2026 <x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;h-4&quot; src=&quot;images/valawai-logo.png&quot; alt=&quot;VALAWAI logo&quot;&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="main_status_version-label" datatype="html">
+        <source> Version:</source>
+        <target> Version:</target>
+      </trans-unit>
+      <trans-unit id="main_status_profile-label" datatype="html">
+        <source> Profile:</source>
+        <target> Profile:</target>
+      </trans-unit>
+      <trans-unit id="main_status_health-label" datatype="html">
+        <source> Health:</source>
+        <target> Health:</target>
+      </trans-unit>
+      <trans-unit id="main_status_code_page-title" datatype="html">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_msg-title" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon class=&quot;text-yellow-700 dark:text-yellow-400&quot;&gt;"/>warning<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="START_TAG_SPAN_1" ctype="x-span_1" equiv-text="&lt;span&gt;"/>Delete text <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-bold&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ t.title || (&apos;#&apos; + t.id) }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon class=&quot;text-yellow-700 dark:text-yellow-400&quot;&gt;"/>warning<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="START_TAG_SPAN_1" ctype="x-span_1" equiv-text="&lt;span&gt;"/>Delete text <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-bold&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ t.title || (&apos;#&apos; + t.id) }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_msg-content" datatype="html">
+        <source> Deleting a received text cannot be undone, so don&apos;t do it unless you&apos;re sure. </source>
+        <target> Deleting a received text cannot be undone, so do not do it unless you are sure. </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_ok-label" datatype="html">
+        <source> Delete </source>
+        <target> Delete </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_cancel-label" datatype="html">
+        <source> Cancel </source>
+        <target> Cancel </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_back-to-list" datatype="html">
+        <source> Back to texts </source>
+        <target> Back to texts </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_page-title" datatype="html">
+        <source>Delete Text</source>
+        <target>Delete Text</target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_load-error" datatype="html">
+        <source>Failed to load text information.</source>
+        <target>Failed to load text information.</target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete_action-error" datatype="html">
+        <source>Failed to delete text.</source>
+        <target>Failed to delete text.</target>
+      </trans-unit>
+      <trans-unit id="main_texts_id-header-label" datatype="html">
+        <source>Id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="main_texts_title-header-label" datatype="html">
+        <source>Title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="main_texts_received-data-header-label" datatype="html">
+        <source>Received Date</source>
+        <target>Date Received</target>
+      </trans-unit>
+      <trans-unit id="main_texts_actions-header-label" datatype="html">
+        <source>Actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="main_texts_view-text-menu-item-label" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;primary&quot;&gt;"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> View </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;primary&quot;&gt;"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> View </target>
+      </trans-unit>
+      <trans-unit id="main_texts_delete-text-menu-item-label" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;warn&quot;&gt;"/>delete<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Delete </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon color=&quot;warn&quot;&gt;"/>delete<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Delete </target>
+      </trans-unit>
+      <trans-unit id="main_texts_page-title" datatype="html">
+        <source>Received Texts</source>
+        <target>Received Texts</target>
+      </trans-unit>
+      <trans-unit id="main_text_view_back-to-list" datatype="html">
+        <source>Back to texts</source>
+        <target>Back to texts</target>
+      </trans-unit>
+      <trans-unit id="main_text_view_page-title" datatype="html">
+        <source>Text View</source>
+        <target>Text View</target>
+      </trans-unit>
+      <trans-unit id="main_text_view_error" datatype="html">
+        <source>Failed to load text.</source>
+        <target>Failed to load text.</target>
+      </trans-unit>
+      <trans-unit id="shared_not-found_title" datatype="html">
+        <source>Page not found</source>
+        <target>Page Not Found</target>
+      </trans-unit>
+      <trans-unit id="shared_not-found_message" datatype="html">
+        <source>The page you are looking for might have been removed, or its name changed, or it temporarily unavailable</source>
+        <target>The page you are looking for might have been removed, its name changed, or it is temporarily unavailable.</target>
+      </trans-unit>
+      <trans-unit id="shared_not-found_go-home" datatype="html">
+        <source>Go to home page </source>
+        <target>Go to home page </target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
