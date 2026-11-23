@@ -8,7 +8,7 @@ The **C0 Text Renderer** is a web-based interface designed to render and display
 - **Component Name**: Text Renderer
 - **Documentation**: [Full Documentation](https://valawai.github.io/docs/components/C0/text_renderer)
 - **Versions**:
-  - **Stable Version**: [1.0.0 (November 17, 2026)](https://github.com/VALAWAI/C0_text_renderer/tree/1.0.0)
+  - **Stable Version**: [1.0.1 (November 22, 2026)](https://github.com/VALAWAI/C0_text_renderer/tree/1.0.1)
   - **API**: [1.0.0 (November 17, 2026)](https://raw.githubusercontent.com/VALAWAI/C0_text_renderer/ASYNCAPI_1.0.0/asyncapi.yml)
   - **Required MOV API**: [1.2.0 (March 9, 2024)](https://raw.githubusercontent.com/valawai/MOV/ASYNCAPI_1.2.0/asyncapi.yml)
 - **Developed By**: [IIIA-CSIC](https://www.iiia.csic.es)

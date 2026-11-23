@@ -18,6 +18,8 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
+import { environment } from '@env';
+import { tap } from 'rxjs';
 
 /**
  * Messages Component
@@ -56,14 +58,13 @@ export class Texts implements OnInit {
   private timeoutID: ReturnType<typeof setTimeout> | null = null;
 
   /**
-   * The currently page shown.
-   */
-  private currentPage = signal<number>(0);
-
-  /**
    * The list of texts currently shown.
    */
-  public page = signal<ReceivedTextPage>(new ReceivedTextPage());
+  public page = signal<ReceivedTextPage>(new ReceivedTextPage(),
+    {
+      equal: (a, b) => JSON.stringify(a) === JSON.stringify(b)
+    }
+  );
 
   /**
    * The columns to display in the table.
@@ -71,19 +72,14 @@ export class Texts implements OnInit {
   public displayedColumns: string[] = ['id', 'title', 'receivedAt', 'actions'];
 
   /**
-   * Whether the data is currently updating.
-   */
-  public updating: boolean = false;
-
-  /**
    * The index to the fisrt patient to return.
    */
-  public pageIndex: number = 0;
+  public pageIndex = 0;
 
   /**
    * The number maximum of patients to show.
    */
-  public pageSize: number = 10;
+  public pageSize = 10;
 
   /**
    * Initialize the component.
@@ -106,16 +102,27 @@ export class Texts implements OnInit {
       this.timeoutID = null;
     }
 
-    this.updating = true;
     var offset = this.pageIndex * this.pageSize;
-    this.api.getReceivedTextPage(offset, this.pageSize).subscribe(
+    this.api.getReceivedTextPage(offset, this.pageSize).pipe(
+      tap(
+        _ => {
+          this.timeoutID = setTimeout(
+            () => {
+              this.updateTexts();
+            },
+            environment.poolTime
+          );
+        }
+      )
+    ).subscribe(
       {
         next: page => {
+
           this.page.set(page);
-          this.updating = false;
+
         },
         error: error => {
-          this.updating = false;
+
           console.error(error);
         }
       }
