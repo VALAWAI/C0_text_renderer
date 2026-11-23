@@ -2,9 +2,9 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-001" target-language="es" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="main_messages-menu-item-label" datatype="html">
-        <source>Messages</source>
-        <target>Mensajes</target>
+      <trans-unit id="main_texts-menu-item-label" datatype="html">
+        <source>Texts</source>
+        <target>Textos</target>
       </trans-unit>
       <trans-unit id="main_status-menu-item-label" datatype="html">
         <source>Status</source>
@@ -71,8 +71,8 @@
         <target>Título</target>
       </trans-unit>
       <trans-unit id="main_texts_received-data-header-label" datatype="html">
-        <source>Received Date</source>
-        <target>Fecha de recepción</target>
+        <source> Received Date</source>
+        <target> Fecha de recepción</target>
       </trans-unit>
       <trans-unit id="main_texts_actions-header-label" datatype="html">
         <source>Actions</source>

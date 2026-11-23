@@ -77,6 +77,7 @@ public class ReceivedTextStoreService {
       receivedText.title = String.format(titlePattern, receivedText.id);
     }
     receivedText.content = payload.content;
+    receivedText.receivedAt = System.currentTimeMillis();
     if (texts.add(receivedText)) {
       Collections.sort(texts, (a, b) -> Long.compare(a.id, b.id));
       return Uni.createFrom().item(receivedText);
